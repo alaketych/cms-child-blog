@@ -1,0 +1,21 @@
+{
+  "name": "child-blog",
+  "version": "1.0.0",
+  "description": "all about raising child",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "devstart": "nodemon server.js"
+  },
+  "author": "Alexandr Laketych",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.5.2",
+    "mongoose": "^5.7.11",
+    "nodemon": "^1.19.4"
+  }
+}
