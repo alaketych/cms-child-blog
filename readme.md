@@ -1,1 +1,1 @@
-# cms-child-blog
+# Blog raising child
