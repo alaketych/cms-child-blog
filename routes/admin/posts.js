@@ -8,7 +8,9 @@ router.all('/*', (request, response, next) => {
 })
 
 router.get('/', (request, response) => {
-    response.send('it works, boooj!')
+    Post.find({}).then(posts => {
+        response.render('admin/posts', {posts: posts})
+    });
 })
 
 router.get('/create', (request, response) => {

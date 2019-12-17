@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost:27017/cms',
                 { useNewUrlParser: true,
                   useUnifiedTopology: true }).then(db => {
                       console.log('Database was connected.')
-                } ).catch( error => console.log(error))
+                }).catch( error => console.log(error))
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())

@@ -1,1 +1,27 @@
-<h1>all postst</h1>
+<h1>All published Posts</h1>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Allowed Comments</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each posts}}
+            <tr>
+                <td> {{ ID }}</td>
+                <td> {{ Title }}</td>
+                <td> {{ Status }}</td>
+                <td> {{ allowComments }}</td>
+                <td> {{ Body }}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+
+</table>
