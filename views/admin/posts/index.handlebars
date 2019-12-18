@@ -9,6 +9,8 @@
             <th>Status</th>
             <th>Allowed Comments</th>
             <th>Description</th>
+
+            <th colspan="2">Options</th>
         </tr>
     </thead>
 
@@ -20,6 +22,9 @@
                 <td> {{ status }}</td>
                 <td> {{ allowComments }}</td>
                 <td> {{ body }}</td>
+
+                <td><a href="/admin/posts/edit/{{id}}" class="btn btn-warning">Edit</a></td>
+                <td><a href="" class="btn btn-danger">Delete</a></td>
             </tr>
         {{/each}}
     </tbody>

@@ -2029,9 +2029,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 }
 
 .form-check-input {
-  position: absolute;
-  margin-top: 0.25rem;
-  margin-left: -1.25rem;
 }
 
 .form-check-inline {
@@ -2424,12 +2421,11 @@ fieldset[disabled] a.btn {
 
 .btn-warning {
   color: #111;
-  background-color: #ffc107;
   border-color: #ffc107;
 }
 
 .btn-warning:hover {
-  color: #111;
+  color: #ffffff;
   background-color: #e0a800;
   border-color: #d39e00;
 }

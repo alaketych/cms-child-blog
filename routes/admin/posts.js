@@ -27,10 +27,10 @@ router.post('/create', (request, response) => {
     (request.body.allowComments) ? allowComments = true : allowComments = false
 
     const newPost = new Post({
-        title: request.body.title,
-        status: request.body.status,
-        allowComments: allowComments,
-        body: request.body.body
+        title:          request.body.title,
+        status:         request.body.status,
+        allowComments:  allowComments,
+        body:           request.body.body
     })
 
     newPost.save().then(savedPost => {
@@ -40,6 +40,27 @@ router.post('/create', (request, response) => {
     })
 
     console.log(request.body)
+})
+
+router.get('/edit/:id', (request, response) => {
+    Post.findOne({ _id: request.params.id }).then(post => {
+        response.render('admin/posts/edit', {post: post})
+    })
+})
+
+router.put('/edit/:id', (request, response) => {
+    Post.findOne({ _id: request.params.id }).then(post => {
+        (request.body.allowComments) ? allowComments = true : allowComments = false
+        
+        post.title          = request.body.title
+        post.status         = request.body.status
+        post.allowComments  = request.body.allowComments
+        post.body           = request.body.body
+    
+        post.save().then(updatedPost => {
+            response.redirect('/admin/posts')
+        })
+    })
 })
 
 module.exports = router
