@@ -63,4 +63,10 @@ router.put('/edit/:id', (request, response) => {
     })
 })
 
+router.delete('/:id', (request, response) => {
+    Post.remove({ _id: request.params.id}).then(result => {
+            response.redirect('/admin/posts')
+    })
+})
+
 module.exports = router

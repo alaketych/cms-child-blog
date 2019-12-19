@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/cms',
                       console.log('Database was connected.')
                 }).catch( error => console.log(error))
 
-const { select } = require('./helpers/handlebars-hekpers')
+const { select } = require('./helpers/handlebars-helpers')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
