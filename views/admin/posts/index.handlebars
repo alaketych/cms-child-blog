@@ -24,8 +24,8 @@
                 <td> {{ body }}</td>
 
                 <td><a href="/admin/posts/edit/{{id}}" class="btn btn-warning">Edit</a></td>
-                <td>
-                    <form action="/admin/posts/{{id}}delete?_method=DELETE" method="POST">
+                <td>                    
+                    <form action="/admin/posts/{{id}}?_method=DELETE" method="post">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>

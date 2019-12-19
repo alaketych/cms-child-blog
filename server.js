@@ -6,7 +6,7 @@ const app = express()
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 
-
+mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost:27017/cms',
                 { useNewUrlParser: true,
                   useUnifiedTopology: true }).then(db => {
