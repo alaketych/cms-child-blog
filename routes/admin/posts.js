@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../../models/Post')
+const { isEmpty } = require('../../helpers/upload-helper')
 
 router.all('/*', (request, response, next) => {
     request.app.locals.layout = 'adminLayout'
@@ -22,6 +23,23 @@ router.get('/posts', (request, response) => {
 })
 
 router.post('/create', (request, response) => {
+    let filename = ''
+
+    if(!isEmpty(request.files)) {
+        let file = request.files.file
+              filename = Date.now() + '-' + file.name
+        let dirUploads = '../../public/uploads'
+    
+        file.mv(dirUploads + filename, error => {
+            if(error) console.log('Uploading file was not success...')          
+        })
+
+        console.log('not empty')
+    }
+    else {
+        console.log('empty')
+    }
+    
     let allowComments = true;
 
     (request.body.allowComments) ? allowComments = true : allowComments = false
@@ -30,7 +48,8 @@ router.post('/create', (request, response) => {
         title:          request.body.title,
         status:         request.body.status,
         allowComments:  allowComments,
-        body:           request.body.body
+        body:           request.body.body,
+        file:           filename
     })
 
     newPost.save().then(savedPost => {

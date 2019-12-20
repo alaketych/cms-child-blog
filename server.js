@@ -4,6 +4,7 @@ const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
 const methodOverride = require('method-override')
+const upload = require('express-fileupload')
 const mongoose = require('mongoose')
 
 mongoose.Promise = require('bluebird');
@@ -18,6 +19,7 @@ const { select } = require('./helpers/handlebars-helpers')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(methodOverride('_method'))
+app.use(upload())
 
 const home  = require( './routes/home/index')
 const admin = require('./routes/admin/index')
