@@ -22,7 +22,7 @@ const PostSchema = new Schema({
         require: true
     },
 
-    body: {
+    file: {
         type: String,
     },
 })

@@ -1,10 +1,17 @@
-<h1>All published Posts</h1>
+<div class="row-info">
+    <h1>All published posts</h1>
+    
+    <a href="/admin/posts/create">
+        <button class="btn btn-default">Create new post</button>
+    </a>
+</div>
 
 <table class="table table-bordered">
 
     <thead>
         <tr>
             <th>ID</th>
+            <th>Media</th>
             <th>Title</th>
             <th>Status</th>
             <th>Allowed Comments</th>
@@ -16,8 +23,9 @@
 
     <tbody>
         {{#each posts}}
-            <tr>
+            <tr>    
                 <td> {{ id }}</td>
+                <td> <img height="100" src="/uploads/{{file}}" alt="picture"/></td>
                 <td> {{ title }}</td>
                 <td> {{ status }}</td>
                 <td> {{ allowComments }}</td>
@@ -26,7 +34,7 @@
                 <td><a href="/admin/posts/edit/{{id}}" class="btn btn-warning">Edit</a></td>
                 <td>                    
                     <form action="/admin/posts/{{id}}?_method=DELETE" method="post">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>                      
                     </form>
                 </td>
             </tr>

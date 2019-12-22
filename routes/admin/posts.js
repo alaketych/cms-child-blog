@@ -23,42 +23,63 @@ router.get('/posts', (request, response) => {
 })
 
 router.post('/create', (request, response) => {
-    let filename = ''
+    let errors = []
 
-    if(!isEmpty(request.files)) {
-        let file = request.files.file
-              filename = Date.now() + '-' + file.name
-        let dirUploads = '../../public/uploads'
-    
-        file.mv(dirUploads + filename, error => {
-            if(error) console.log('Uploading file was not success...')          
+    if(!request.body.title) {
+        errors.push({
+            message: 'Title is required!'
         })
+    }
 
-        console.log('not empty')
+    if(!request.body.body) {
+        errors.push({
+            message: 'Description should be filled.'
+        })
+    }
+    
+    if(errors.length > 0) {
+        response.render('admin/posts/create', {
+            errors: errors
+        })
     }
     else {
-        console.log('empty')
+        let filename = ''
+
+        if(!isEmpty(request.files)) {
+            let file = request.files.file
+                filename = Date.now() + '-' + file.name
+            let dirUploads = './public/uploads/'
+        
+            file.mv(dirUploads + filename, error => {
+                if(error) console.log('Uploading file was not success...')          
+            })
+
+            console.log('Media file was uploaded')
+        }
+        else {
+            console.log('Post does not contain any of media files')
+        }
+        
+        let allowComments = true;
+
+        (request.body.allowComments) ? allowComments = true : allowComments = false
+
+        const newPost = new Post({
+            title:          request.body.title,
+            status:         request.body.status,
+            allowComments:  allowComments,
+            body:           request.body.body,
+            file:           filename
+        })
+
+        newPost.save().then(savedPost => {
+            response.redirect('/admin/posts')
+        }).catch(error => {
+            console.log('could not save post.')
+        })
+
+        console.log(request.body)
     }
-    
-    let allowComments = true;
-
-    (request.body.allowComments) ? allowComments = true : allowComments = false
-
-    const newPost = new Post({
-        title:          request.body.title,
-        status:         request.body.status,
-        allowComments:  allowComments,
-        body:           request.body.body,
-        file:           filename
-    })
-
-    newPost.save().then(savedPost => {
-        response.redirect('/admin/posts')
-    }).catch(error => {
-        console.log('could not save post.')
-    })
-
-    console.log(request.body)
 })
 
 router.get('/edit/:id', (request, response) => {
