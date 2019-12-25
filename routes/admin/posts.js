@@ -73,6 +73,9 @@ router.post('/create', (request, response) => {
         })
 
         newPost.save().then(savedPost => {
+            request.flash('success_message', `Post "${savedPost.title}" was published successfully`)
+            
+
             response.redirect('/admin/posts')
         }).catch(error => {
             console.log('could not save post.')
@@ -96,8 +99,23 @@ router.put('/edit/:id', (request, response) => {
         post.status         = request.body.status
         post.allowComments  = request.body.allowComments
         post.body           = request.body.body
+
+        if(!isEmpty(request.files)) {
+            let file = request.files.file
+                filename = Date.now() + '-' + file.name
+            let dirUploads = './public/uploads/'
+            post.file = filename
+        
+            file.mv(dirUploads + filename, error => {
+                if(error) console.log('Uploading file was not success...')          
+            })
+
+            console.log('Media file was uploaded')
+        }
     
         post.save().then(updatedPost => {
+            request.flash('success_message', `Post "${updatedPost.title}" was edited successfully`)
+
             response.redirect('/admin/posts')
         })
     })
@@ -105,7 +123,8 @@ router.put('/edit/:id', (request, response) => {
 
 router.delete('/:id', (request, response) => {
     Post.remove({ _id: request.params.id}).then(result => {
-            response.redirect('/admin/posts')
+        request.flash('success_message', 'Post was deleted completely')
+        response.redirect('/admin/posts')
     })
 })
 

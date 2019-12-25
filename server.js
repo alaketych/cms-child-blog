@@ -1,24 +1,38 @@
 const path = require('path')
 const express = require('express')
+const session = require('express-session')
+const flash = require('connect-flash')
 const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
-const app = express()
 const methodOverride = require('method-override')
 const upload = require('express-fileupload')
 const mongoDBConnecion = require('./controllers/database') 
 const { select } = require('./helpers/handlebars-helpers')
 
+const app = express()
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(methodOverride('_method'))
 app.use(upload())
+app.use(session({
+    secret: 'alaketych',
+    resave: true,
+    saveUninitialized: true,
+  }))
+app.use(flash())
 
-const home  = require( './routes/home/index')
+app.use((request, response, next) => {
+  response.locals.success_message = request.flash('success_message')
+  next()
+})
+
+const home  = require('./routes/home/index')
 const admin = require('./routes/admin/index')
 const posts = require('./routes/admin/posts')
 
 app.use(express.static(path.join(__dirname, 'public')))
-app.engine('handlebars', expressHandlebars({defaultLayout: 'homeLayout', helpers: { select: select   }}))
+app.engine('handlebars', expressHandlebars({defaultLayout: 'homeLayout', helpers: { select: select }}))
 app.set('view engine', 'handlebars')
 
 app.use('/', home)
