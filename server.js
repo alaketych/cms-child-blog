@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const upload = require('express-fileupload')
 const mongoDBConnecion = require('./controllers/database') 
-const { select } = require('./helpers/handlebars-helpers')
+const { select, generateDate } = require('./helpers/handlebars-helpers')
 
 const app = express()
 
@@ -32,7 +32,8 @@ const admin = require('./routes/admin/index')
 const posts = require('./routes/admin/posts')
 
 app.use(express.static(path.join(__dirname, 'public')))
-app.engine('handlebars', expressHandlebars({defaultLayout: 'homeLayout', helpers: { select: select }}))
+app.engine('handlebars', expressHandlebars({defaultLayout: 'homeLayout', helpers: { select: select,
+                                                                                    generateDate: generateDate }}))
 app.set('view engine', 'handlebars')
 
 app.use('/', home)
