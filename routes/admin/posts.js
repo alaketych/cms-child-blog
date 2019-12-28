@@ -123,7 +123,7 @@ router.put('/edit/:id', (request, response) => {
 })
 
 router.delete('/:id', (request, response) => {
-    Post.remove({ _id: request.params.id}).then(result => {
+    Post.remove({ _id: request.params.id }).then(deletedPost => {
         request.flash('success_message', 'Post was deleted completely')
         response.redirect('/admin/posts')
     })
