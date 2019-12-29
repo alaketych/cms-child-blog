@@ -20,6 +20,14 @@
 
     <div class="container">
 
+      {{#if errors}}
+        {{#each errors}}
+            <div class="alert alert-danger">
+                <strong>Notice: </strong>{{message}}
+            </div>
+        {{/each}}
+      {{/if}}
+
       {{{body}}}
 
     </div>
