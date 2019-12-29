@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../../models/Post')
-const moment = require('moment')
+const Category = require('../../models/Category')
 const { isEmpty } = require('../../helpers/upload-helper')
+const moment = require('moment')
 
 router.all('/*', (request, response, next) => {
     request.app.locals.layout = 'adminLayout'
@@ -16,7 +17,9 @@ router.get('/', (request, response) => {
 })
 
 router.get('/create', (request, response) => {
-    response.render('admin/posts/create')
+    Category.find({}).then(categories => {
+        response.render('admin/posts/create', {categories: categories})
+    })
 })
 
 router.get('/posts', (request, response) => {
@@ -88,7 +91,9 @@ router.post('/create', (request, response) => {
 
 router.get('/edit/:id', (request, response) => {
     Post.findOne({ _id: request.params.id }).then(post => {
-        response.render('admin/posts/edit', {post: post})
+        Category.find({}).then(categories => {
+            response.render('admin/posts/edit', {post: post, categories: categories})
+        })
     })
 })
 
@@ -100,6 +105,7 @@ router.put('/edit/:id', (request, response) => {
         post.status         = request.body.status
         post.allowComments  = request.body.allowComments
         post.body           = request.body.body
+        post.category       = request.body.category
 
         if(!isEmpty(request.files)) {
             let file = request.files.file

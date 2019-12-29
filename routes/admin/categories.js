@@ -19,7 +19,8 @@ router.post('/create', (request, response) => {
     })
 
     newCategory.save().then(savedCategory => {
-        response.redirect('/admin/categories/index')
+        request.flash('success_message', `New category ${savedCategory.name}'s been created.`)
+        response.redirect('/admin/categories/')
     })
 })
 
@@ -33,6 +34,7 @@ router.put('/edit/:id', (request, response) => {
     Category.findOne({ _id: request.params.id }).then(category => {
         category.name = request.body.name
         category.save().then(savedCategory => {
+            request.flash('success_message', `Changes to the category ${category.name}'s been saved.`)
             response.redirect('/admin/categories')
         })     
     })
