@@ -3,6 +3,9 @@ const router = express.Router()
 const User = require('../../models/User')
 const Post = require('../../models/Post')
 const Category = require('../../models/Category')
+const bcrypt = require('bcryptjs')
+const passport = require('passport')
+const localStrategy = require('passport-local').Strategy
 
 router.all('/*', (request, response, next) => {
     request.app.locals.layout = 'homeLayout'
@@ -23,6 +26,46 @@ router.get('/about', (request, response) => {
 
 router.get('/login', (request, response) => {
     response.render('./home/login')
+})
+
+passport.use(new localStrategy({usernameField: 'email'}, (email, password, done) => {
+    User.findOne({email: email}).then(user => {
+        if(!user) return done(null, false, {message: 'User with entered email was not found. Try another one.'})
+    
+        bcrypt.compare(password, user.password, (error, matched) => {
+            if(error) return error
+
+            if(matched) {
+                return done(null, user)
+            }
+            else {
+                return done(null, false, {message: 'Something went wrong, probably password is incorrect'})
+            }
+        })
+    })
+}))
+
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+    User.findById(id, (error, user) => {
+        done(error, user)
+    })
+})
+
+router.post('/login', (request, response) => {
+    passport.authenticate('local', {
+        successRedirect: '/admin',
+        failureRedirect: '/login',
+        failureFlash: true
+    }) (request, response)
+})
+
+router.get('/logout', (request, response) => {
+    request.logOut()
+    response.redirect('/')
 })
 
 router.get('/register', (request, response) => {
@@ -82,9 +125,18 @@ router.post('/register', (request, response) => {
             password    : request.body.password,
         })
 
-        newUser.save().then(savedUser => {
-            response.send('User was successfully added.')      
-        })}
+        bcrypt.genSalt(10, (error, salt) => {
+            bcrypt.hash(newUser.password, salt, (error, hash) => {
+                newUser.password = hash
+
+
+                newUser.save().then(savedUser => {
+                    request.flash('success_message', 'You have just registered yourself. Put your login and password to enter.')
+                    response.redirect('/login')      
+                })
+            })
+        })
+    }
 })
 
 router.get('/post/:id', (request, response) => {

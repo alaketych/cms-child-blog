@@ -1,11 +1,12 @@
 const path = require('path')
 const express = require('express')
 const session = require('express-session')
-const flash = require('connect-flash')
+const upload = require('express-fileupload')
 const expressHandlebars = require('express-handlebars')
+const passport = require('passport')
+const flash = require('connect-flash')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const upload = require('express-fileupload')
 const mongoDBConnecion = require('./controllers/database') 
 const { select, generateDate } = require('./helpers/handlebars-helpers')
 
@@ -19,10 +20,18 @@ app.use(session({
     secret: 'alaketych',
     resave: true,
     saveUninitialized: true,
-  }))
+}))
+
 app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 app.use((request, response, next) => {
+  response.locals.use = request.user || null
+  response.locals.error = request.flash('error')
+  response.locals.form_error = request.flash('form_errors')
+  response.locals.error_message = request.flash('error_message')
   response.locals.success_message = request.flash('success_message')
   next()
 })

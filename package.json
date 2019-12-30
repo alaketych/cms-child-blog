@@ -10,6 +10,8 @@
   "author": "Alexandr Laketych",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -26,6 +28,8 @@
     "moment": "^2.24.0",
     "mongodb": "^3.4.0",
     "mongoose": "^5.8.1",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   }
 }
