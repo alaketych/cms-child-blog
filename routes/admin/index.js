@@ -1,7 +1,8 @@
 const express = require('express')
+const { userAuthenticated } = require('../../helpers/auth-helper')
 const router = express.Router()
 
-router.all('/*', (request, response, next) => {
+router.all('/*', userAuthenticated, (request, response, next) => {
     request.app.locals.layout = 'adminLayout'
     next();
 })

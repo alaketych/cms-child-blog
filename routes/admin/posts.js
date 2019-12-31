@@ -3,6 +3,7 @@ const router = express.Router()
 const Post = require('../../models/Post')
 const Category = require('../../models/Category')
 const { isEmpty } = require('../../helpers/upload-helper')
+const { userAuthenticated } = require('../../helpers/auth-helper')
 const moment = require('moment')
 
 router.all('/*', (request, response, next) => {
