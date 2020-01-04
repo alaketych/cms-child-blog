@@ -1,0 +1,122 @@
+@font-face { font-family: Delicious; src: url('../../font/Nexa\ Light.otf'); } 
+@font-face { font-family: bDelicious; font-weight: bold; src: url('../../font/Nexa\ Bold.otf');}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
+    background: #f8f8f8f8;
+
+    align-content: center;
+    align-self: center;
+
+    margin-top: 40px;
+    padding: 40px;
+}
+
+.login-head a {
+    font-size: 33px;
+    color: #585961;
+    font-family: bDelicious;
+}   
+
+.login-head a::after {
+    width: 60px;
+    height: 2px;
+    background: #7c7db9;
+    display: block;
+    content: '';
+
+    margin: 20px 10px 10px 10px;
+}
+
+.why-head {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0 0 10px;
+    letter-spacing: .2px;
+    font-family: Delicious;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;   
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    color: #585961;
+    font-family: bDelicious;
+    text-transform: uppercase;
+
+    margin-top: 20px;
+}
+
+.form-group label {
+    margin: 0px 0px 10px 0px;
+}
+
+input {
+    border: none;
+    font-size: 20px;
+    background: transparent;
+    border-bottom: 2px solid #e3e3e3e3;
+}
+
+input:focus {
+    outline: 0;
+}
+
+input:hover {
+    border-bottom: 2px solid #7c7db9;
+}
+
+.sbmtBtn:focus { outline: 0; }
+
+.sbmtBtn {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 30px;
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;
+    border: 3px solid #7c7db9;
+    background-image: -webkit-linear-gradient(30deg, #7c7db9 50%, transparent 50%);
+    background-image: linear-gradient(30deg, #7c7db9 50%, transparent 50%);
+    background-size: 500px;
+    background-repeat: no-repeat;
+    margin: 20px 10px 20px 0px;
+    background-position: 0%;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+  }
+  .sbmtBtn:hover {
+    background-position: 100%;
+    color: #7c7db9;
+  }
+
+.text-center {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    font-family: Delicious;
+}
+
+.text-center a {
+    color: #585961;
+}
+
+.text-center a:hover {
+    color: #7c7db9;
+    font-weight: 900;
+}
+

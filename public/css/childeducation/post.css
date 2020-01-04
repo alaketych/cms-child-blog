@@ -1,0 +1,56 @@
+.primary-background { color: #f8f8f8; }
+.primary-text { color: #585961; }
+.purple { color: #7c7db9; }
+.green { color: #6dc6c9}
+.choosen-nav { color: #666979; }
+
+.breadcrumbs {
+    height: 25px;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-gap: 25px;
+    width: 90%;
+    margin: auto;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 50px 50px 50px;
+    background: #f8f8f8f8;
+}
+
+article h1 {
+    font-size: 25px;
+    color: #585961;
+    line-height: 54px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-top: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+article h1::after {
+    width: 60px;
+    height: 2px;
+    background: #6dc6c9;
+    display: block;
+    content: '';
+
+    margin: 5px 0px 25px 20px;
+}
+
+article a {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.banners {
+    display: flex;
+}
+
+aside {
+    padding: 2px;
+}

@@ -1,47 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/childeducation/raw.css">
+    <link rel="stylesheet" href="/css/childeducation/form.css">
+    <link rel="stylesheet" href="/css/childeducation/start-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kulim+Park&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+</head>
 
-  <head>
+<body>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {{> home/home-nav }}  
 
-    <title>Blog Home - Start Bootstrap Template</title>
-
-    <link href="/css/blog-home.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-    {{> home/home-nav }}
-
-    <div class="container">
-
-      {{#if errors}}
-        {{#each errors}}
-            <div class="alert alert-danger">
-                <strong>Notice: </strong>{{message}}
-            </div>
-        {{/each}}
-
-        
-        {{> home/form-message }}
-      {{/if}}
-
-      {{{body}}}
-
-    </div>
+    <main>
+        {{{body}}}
+    </main>
 
     {{> home/footer}}
 
-    <!-- Bootstrap core JavaScript
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    -->
-
-  </body>
+</body>
 
 </html>

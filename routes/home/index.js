@@ -20,10 +20,6 @@ router.get('/', (request, response) => {
     })
 })
 
-router.get('/about', (request, response) => {
-    response.render('./home/about')
-})
-
 router.get('/login', (request, response) => {
     response.render('./home/login')
 })

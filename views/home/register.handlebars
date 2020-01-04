@@ -1,4 +1,4 @@
-<div class="card card-register mx-auto mt-5">
+{{!-- <div class="card card-register mx-auto mt-5">
     <div class="card-header">Register an Account</div>
     <div class="card-body">
         <form action="/register" method="post">
@@ -38,4 +38,32 @@
             <a class="d-block small" href="/">Home Page?</a>
         </div>
     </div>
+</div> --}}
+
+<div class="login-page">
+    <div class="login-head"><a>Create a new account</a></div>
+    <div class="why-text"><a>Sign up with childeducation to receive weekly newsletters, comment on our articles, and save your favorite printables.</a></div>
+
+    <div class="form-body">
+        <form action="/register" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input name="email" class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter your email adress">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input name="password" class="form-control" id="exampleInputPassword1" type="password" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input name="password" class="form-control" id="exampleInputPassword1" type="password" placeholder="Enter your password again">
+            </div>
+        </form>
+        <button class="sbmtBtn" style="width: 150px; height: 50px;" type="submit">Sing in</button>
+
+        <div class="text-center">
+            <p>Already have account? </p>
+            <a href="/login">Log in</a>
+        </div>
+    </div>        
 </div>
