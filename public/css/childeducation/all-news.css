@@ -1,0 +1,54 @@
+@font-face { font-family: Delicious; src: url('../font/Nexa\ Light.otf'); } 
+@font-face { font-family: bDelicious; font-weight: bold; src: url('../font/Nexa\ Bold.otf');}
+
+.article-miniature {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.article-miniature div {
+    width: 35%;
+}
+
+.article-image {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    position: relative;
+}
+
+.article-info {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 15px;
+}
+
+.article-category {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #585961;
+    font-family: bDelicious;
+}
+
+.article-name {
+    font-size: 22px;
+    color: #7c7db9;
+    font-family: bDelicious;
+}
+
+.article-name:hover {
+    color: #6dc5c9;
+    transition-duration: 0.5s;
+}
+
+.article-desc {
+    width: 100%;
+    font-family: Ubuntu,sans-serif;
+    color: #585961;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+}

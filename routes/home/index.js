@@ -13,9 +13,13 @@ router.all('/*', (request, response, next) => {
 })
 
 router.get('/', (request, response) => {
+    response.render('./home/index')
+})
+
+router.get('/articles', (reqeust, response) => {
     Post.find({}).then(posts => {
         Category.find({}).then(categories => {
-            response.render('./home/index', {posts: posts, categories: categories})
+            response.render('./home/articles', {posts: posts, categories: categories})
         })
     })
 })

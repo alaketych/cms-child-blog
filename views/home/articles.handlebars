@@ -1,0 +1,15 @@
+{{#each posts}}
+    <div class="article-miniature">
+        <div>
+            <img class="article-image" src="/uploads/{{file}}" href="/post/{{id}}">
+        </div>
+        
+        <div class="article-info">
+            <a class="article-category">{{category}}</a>
+            <a class="article-name" href="/post/{{id}}">{{title}}</a>
+            <div class="article-desc">
+                {{body}}
+            </div>
+        </div>
+    </div>
+{{/each}}

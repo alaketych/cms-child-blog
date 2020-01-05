@@ -262,7 +262,7 @@ main section div:first-child .text h2  {
 
 aside {
     width: 100%;
-    background: url("/images/stripesbg.png");
+    background: url("../../uploads/stripesbg.png");
     background-color: #6dc5c9;
 
     text-align: center;
