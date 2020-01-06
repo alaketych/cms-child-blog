@@ -12,16 +12,30 @@ router.all('/*', (request, response, next) => {
     next();
 })
 
+const escapeRegex = text => {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+}
+
 router.get('/', (request, response) => {
     response.render('./home/index')
 })
 
-router.get('/articles', (reqeust, response) => {
-    Post.find({}).then(posts => {
-        Category.find({}).then(categories => {
-            response.render('./home/articles', {posts: posts, categories: categories})
+router.get('/articles', (request, response) => {
+    let errors = []
+    if(request.query.search) {
+        const regex = new RegExp(escape(request.query.search), 'gi')
+
+        Post.find({ title: regex }).then(posts => {
+            Category.find({}).then(categories => {
+                response.render('./home/articles', {posts: posts, categories: categories})
+            })
         })
-    })
+    } 
+    else {
+        errors.push({
+            message: 'No matches found.'
+        })
+    }
 })
 
 router.get('/login', (request, response) => {

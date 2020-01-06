@@ -5,11 +5,13 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    padding: 20px;
+    padding: 30px;
+    width: 75%;
 }
 
-.article-miniature div {
-    width: 35%;
+.article-miniature div img {
+    width: 100%;
+    height: auto; 
 }
 
 .article-image {
@@ -37,6 +39,7 @@
     font-size: 22px;
     color: #7c7db9;
     font-family: bDelicious;
+    padding: 20px 20px 20px 0px;
 }
 
 .article-name:hover {
