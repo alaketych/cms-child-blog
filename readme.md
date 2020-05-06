@@ -1,7 +1,7 @@
 # childeducation blog
 
 ## Description
-This is the first attempt to create first cms system. The ap[ is built with full CRUD acrosst three models (User, Post, Category) using RESTful routers. 
+The app is built with full CRUD acrosst three models (User, Post, Category) using RESTful routers. 
 
 ## Technology stack
 * JavaScript
