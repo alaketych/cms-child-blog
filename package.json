@@ -24,7 +24,7 @@
     "express-session": "^1.17.0",
     "faker": "^4.1.0",
     "flash": "^1.1.0",
-    "handlebars": "^4.5.3",
+    "handlebars": "^4.7.7",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongodb": "^3.4.0",
